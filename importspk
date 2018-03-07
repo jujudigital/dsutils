@@ -1,0 +1,78 @@
+#!/bin/bash
+## 
+# Nice little script to upack and clean up and import a DroidScript SPK project archive.
+# 
+# When DroidScript exports SPKs it appends .txt to any file with a .js extension.
+# It does this so that the SPK doesn't get blocked when sharing it as an
+# attachment to an email. Gmail blocks all JavaScript and JSON files.
+# If you use a version control system like Git, or you use an ofline source editor
+# you might prefer to work with un-amended files.
+# 
+# This utility takes an SPK, unpacks it and removes all the appended file extensions, 
+# whilst putting the files in your target directory.
+# 
+# Example:
+# bash importspk MyProject .MyProject.spk ./MyProject/src/
+# 
+# Add this utility to your /usr/bin directory to make it available anywhere in your filesystem:
+# importspk <project_name> </path/to/project.spk> </path/to/target/directory/>
+
+##
+# Describes correct usage of the script
+#
+usage() {
+  echo 'Usage: importspk <project_name> </full/path/to/spk> </path/to/target/directory/>'
+  exit 1
+}
+
+
+##
+# Check for parameters
+#
+if [ "$1" = '' ] || [ "$2" = '' ] || [ "$3" = '' ]; then
+  usage
+fi
+
+project_name=$1
+source_spk=$2
+target_dir="$3"
+
+
+##
+# Preparation
+#
+extn='.zip'
+source_zip="${source_spk/.spk/$extn}"
+cp $source_spk $source_zip
+mkdir $target_dir
+
+##
+# Unzip the spk
+#
+echo "==================================================================="
+echo "Unpacking the SPK"
+echo " "
+
+
+unzip $source_zip -d $target_dir
+
+cp -R "$target_dir/$project_name/" $target_dir
+rm -R "$target_dir/$project_name"
+
+rm $source_zip
+
+
+##
+# Clean up, remove all .txt extensions
+#
+echo "==================================================================="
+echo "Cleaning filenames"
+echo " "
+
+find $target_dir -name "*.txt" -exec bash -c 'mv "$1" "${1%.txt}"' - '{}' \;
+find $target_dir -name "*.js.txtonp" -exec bash -c 'mv "$1" "${1%.js.txtonp}".jsonp' - '{}' \;
+find $target_dir -name "*.js.txton" -exec bash -c 'mv "$1" "${1%.js.txton}".json' - '{}' \;
+
+echo "==================================================================="
+echo "Done!"
+echo " "

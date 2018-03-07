@@ -1,0 +1,58 @@
+#!/bin/bash
+
+##
+# Simple script to perform a git archive to spk.
+#
+# You can use this lovely little script to export your DroidScript source
+# files from a git repo into a DroidScript SPK project archive file.
+
+
+##
+# Describes correct usage of the script
+#
+usage() {
+  echo 'Usage: exportspk <SrcFolder> <ProjectName> <branch>'
+  echo ' '
+  echo 'Use to exportspk src files from the project into a DroidScript SPK project archive.'
+  exit 1
+}
+
+#
+# Check for correct number of args
+#
+if [[ $# -ne 3 ]]; then
+  usage
+fi
+
+target="./dist"
+
+if [[ ! -d $target ]]; then
+  mkdir $target
+fi
+
+args=("$@")
+##
+# Extract the archive to a zip file
+#
+git archive --format zip --output $target/${args[1]}.zip ${args[2]}:${args[0]}
+
+##
+# Extract the .zip to a folder and then compress that as a .zip and change
+# the extension to .spk
+#
+cd $target
+
+unzip ${args[1]}.zip -d ${args[1]}
+
+rm ${args[1]}.zip
+
+zip -r  ${args[1]}.zip ${args[1]}
+
+mv ${args[1]}.zip ${args[1]}.spk
+
+rm -R ${args[1]}
+
+echo "------------------------------------------------------------"
+echo "Export complete! Exported to: ${args[1]}.spk"
+
+exit 0
