@@ -1,6 +1,6 @@
 # dsutils
 
-A small suite of utility script to help with day to day dev of DroidScript (DS) projects.
+A small suite of utility scripts to help with day to day structured development of DroidScript (DS) projects.
 
 # Import/Export SPK scripts
 DS SPKs are essentially zip archives and if they've been exported from DS then they are structured like this:
@@ -25,7 +25,7 @@ Personally I like to add some structure around my projects and pop them into Git
 This little CLI utility unpacks the SPK archive and ipmorts in into the relevant source folder in your structured repo based project.
 
 ## Installation
-To use as a CLI command then add this utility to your `/usr/bin` directory to make it available anywhere in your filesystem
+To use as a CLI utility then add the script to your `/usr/bin` directory to make it available anywhere in your filesystem.
 
 ## Example
 ```
@@ -33,7 +33,7 @@ importspk <ProjectName> </path/to/ProjectName.spk> </path/to/target/directory/>
 
 ```
 ## Adhoc use
-If you don't want to install it then you can use it adhoc like this:
+If you don't want to install it then you can use it on an adhoc like this:
 ```
 bash /path/to/importspk <ProjectName> /path/to/ProjectName.spk /path/to/ProjectName/src/
 ```
@@ -49,7 +49,7 @@ bash /path/to/exportspk </path/to/src> <ProjectName> < gitBranchName>
 ```
 
 # exportplugin
-If your developing JavaScript only plugins for DS then they are exported to a zip. This is a modifed version of _exportspk_.
+If you're developing JavaScript only plugins for DS then they are exported to a zip. This is a modifed version of _exportspk_.
 
 Like the SPK exporter I normally include this script in my repo project under a ./build folder. It will export the resulting SPK to a ./dist folder.
 
