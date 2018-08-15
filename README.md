@@ -21,7 +21,7 @@ ProjectName.spk
 
 Note the .txt extensions added to permit email sharing.
 
-Personally I like to add some structure around my projects and pop them into Git repos, so having a means to easily import and export them to and from the my project space is really helpful.
+Personally I like to add some structure around my projects and pop them into Git repos, so having a means to easily import and export them to and from my project space is really helpful.
 
 
 # importspk
