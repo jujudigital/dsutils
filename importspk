@@ -22,7 +22,7 @@
 #
 usage() {
   printf "%s\n\n" 'Usage: importspk <project_name> </full/path/to/spk> </path/to/target/directory/>'
-  printf "%s\n\n" 'Use to import and clean a DS SPK into your a project sourc folder'
+  printf "%s\n\n" 'Use to import and clean a DS SPK into your a project source folder'
   exit 1
 }
 
