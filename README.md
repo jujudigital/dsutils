@@ -2,6 +2,9 @@
 
 A small suite of utility scripts to help with day to day structured development of DroidScript (DS) projects.
 
+# Changes since last release
+Refer to the [change log](./CHANGELOG.md)
+
 # Import/Export SPK scripts
 DS SPKs are essentially zip archives and if they've been exported from DS then they are structured like this:
 
@@ -18,7 +21,7 @@ ProjectName.spk
 
 Note the .txt extensions added to permit email sharing.
 
-Personally I like to add some structure around my projects and pop them into Git repos, so having a means to easily import and export them is really helpful.
+Personally I like to add some structure around my projects and pop them into Git repos, so having a means to easily import and export them to and from the my project space is really helpful.
 
 
 # importspk

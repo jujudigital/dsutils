@@ -11,9 +11,8 @@
 # Describes correct usage of the script
 #
 usage() {
-  echo 'Usage: exportspk <SrcFolder> <ProjectName> <branch>'
-  echo ' '
-  echo 'Use to exportspk src files from the project into a DroidScript SPK project archive.'
+  printf "%s\n\n" 'Usage: exportspk <AppFolder> <ProjectName> <branch>'
+  printf "%s\n\n" 'Use to exportspk src files from the project into a DroidScript SPK project archive.'
   exit 1
 }
 

@@ -12,9 +12,8 @@
 # Describes correct usage of the script
 #
 usage() {
-  echo 'Usage: export <SrcFolder> <ProjectName> <branch>'
-  echo ' '
-  echo 'Use to export DS JS only plugin src files from the project into zip.'
+  printf "%s\n\n" 'Usage: export <SrcFolder> <ProjectName> <branch>'
+  printf "%s\n\n" echo'Use to export DS JS only plugin src files from the project into zip.'
   exit 1
 }
 
@@ -32,26 +31,11 @@ if [[ ! -d $target ]]; then
 fi
 
 args=("$@")
+
 ##
-# Extract the archive to a zip file
+# Extract the git archive to a zip file in the target folder
 #
 git archive --format zip --output $target/${args[1]}.zip ${args[2]}:${args[0]}
-
-##
-# Extract the .zip to a folder and then compress that as a .zip and change
-# the extension to .spk
-#
-# cd $target
-
-# unzip ${args[1]}.zip -d ${args[1]}
-
-# rm ${args[1]}.zip
-
-# zip -r  ${args[1]}.zip ${args[1]}
-
-# mv ${args[1]}.zip ${args[1]}.spk
-
-# rm -R ${args[1]}
 
 echo "------------------------------------------------------------"
 echo "Export complete! Exported to: ${args[1]}.zip"
